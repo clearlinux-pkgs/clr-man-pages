@@ -4,7 +4,7 @@
 #
 Name     : clr-man-pages
 Version  : 8
-Release  : 4
+Release  : 5
 URL      : https://github.com/clearlinux/clr-man-pages/releases/download/v8/clr-man-pages-8.tar.xz
 Source0  : https://github.com/clearlinux/clr-man-pages/releases/download/v8/clr-man-pages-8.tar.xz
 Summary  : No detailed summary available
