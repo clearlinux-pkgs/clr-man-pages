@@ -4,7 +4,7 @@
 #
 Name     : clr-man-pages
 Version  : 8
-Release  : 6
+Release  : 7
 URL      : https://github.com/clearlinux/clr-man-pages/releases/download/v8/clr-man-pages-8.tar.xz
 Source0  : https://github.com/clearlinux/clr-man-pages/releases/download/v8/clr-man-pages-8.tar.xz
 Summary  : No detailed summary available
@@ -31,20 +31,23 @@ doc components for the clr-man-pages package.
 %setup -q -n clr-man-pages-8
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1491242842
+export SOURCE_DATE_EPOCH=1518588476
 %configure --disable-static
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %check
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1491242842
+export SOURCE_DATE_EPOCH=1518588476
 rm -rf %{buildroot}
 %make_install
 
