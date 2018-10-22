@@ -4,13 +4,14 @@
 #
 Name     : clr-man-pages
 Version  : 8
-Release  : 8
+Release  : 9
 URL      : https://github.com/clearlinux/clr-man-pages/releases/download/v8/clr-man-pages-8.tar.xz
 Source0  : https://github.com/clearlinux/clr-man-pages/releases/download/v8/clr-man-pages-8.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC-BY-SA-3.0
-Requires: clr-man-pages-doc
+Requires: clr-man-pages-license = %{version}-%{release}
+Requires: clr-man-pages-man = %{version}-%{release}
 
 %description
 clr-man-pages
@@ -19,12 +20,20 @@ Provides a few extra man pages that describes the particularities
 of Clear Linux OS for Intel Architecture, and some useful tips
 and tricks for the most frequently asked questions.
 
-%package doc
-Summary: doc components for the clr-man-pages package.
-Group: Documentation
+%package license
+Summary: license components for the clr-man-pages package.
+Group: Default
 
-%description doc
-doc components for the clr-man-pages package.
+%description license
+license components for the clr-man-pages package.
+
+
+%package man
+Summary: man components for the clr-man-pages package.
+Group: Default
+
+%description man
+man components for the clr-man-pages package.
 
 
 %prep
@@ -35,7 +44,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1518588476
+export SOURCE_DATE_EPOCH=1540236563
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -47,13 +56,20 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1518588476
+export SOURCE_DATE_EPOCH=1540236563
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/clr-man-pages
+cp LICENSE %{buildroot}/usr/share/package-licenses/clr-man-pages/LICENSE
 %make_install
 
 %files
 %defattr(-,root,root,-)
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man7/*
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/clr-man-pages/LICENSE
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man7/os-core.7
+/usr/share/man/man7/stateless.7
