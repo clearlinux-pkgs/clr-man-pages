@@ -4,7 +4,7 @@
 #
 Name     : clr-man-pages
 Version  : 12
-Release  : 13
+Release  : 14
 URL      : https://github.com/clearlinux/clr-man-pages/releases/download/v12/clr-man-pages-12.tar.xz
 Source0  : https://github.com/clearlinux/clr-man-pages/releases/download/v12/clr-man-pages-12.tar.xz
 Summary  : No detailed summary available
@@ -45,11 +45,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573586351
+export SOURCE_DATE_EPOCH=1604886401
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
 make  %{?_smp_mflags}
@@ -59,10 +59,10 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1573586351
+export SOURCE_DATE_EPOCH=1604886401
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/clr-man-pages
 cp %{_builddir}/clr-man-pages-12/LICENSE %{buildroot}/usr/share/package-licenses/clr-man-pages/fb41626a3005c2b6e14b8b3f5d9d0b19b5faaa51
